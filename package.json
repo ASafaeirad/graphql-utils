@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "author": "frontendmonster <frontendmonster@gmail.com>",
-  "description": "Useful utilities for node dev",
+  "description": "Useful utilities for create graphql server and client",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/frontendmonster/dev-utils.git"
