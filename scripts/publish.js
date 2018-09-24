@@ -14,14 +14,14 @@ const files = [
   'README.md',
 ];
 
-spawnSync('npm', ['run', 'build'], { cwd: src });
+spawnSync('npm', ['run', 'build'], { cwd: src, stdio: 'inherit' });
 
 files.map(file => fs.copyFileSync(path.join(src, file), path.join(lib, file)));
 
 fs.writeFileSync(path.join(lib, 'package.json'), JSON.stringify(pkg, {}, 2));
 
 if (argv.justPack) {
-  spawn('npm', ['pack'], { cwd: lib });
+  spawn('npm', ['pack'], { cwd: lib, stdio: 'inherit' });
 } else {
-  spawn('npm', ['publish'], { cwd: lib });
+  spawn('npm', ['publish'], { cwd: lib, stdio: 'inherit' });
 }
