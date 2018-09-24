@@ -15,8 +15,8 @@
     "prebuild": "npm run clean",
     "build": "babel src --out-dir lib",
     "lint": "eslint src",
-    "publish": "node ./scripts/publish",
-    "pack": "node ./scripts/publish --just-pack"
+    "lib:publish": "node ./scripts/publish",
+    "lib:pack": "node ./scripts/publish --just-pack"
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.2.10",

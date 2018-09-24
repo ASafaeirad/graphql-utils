@@ -23,5 +23,5 @@ fs.writeFileSync(path.join(lib, 'package.json'), JSON.stringify(pkg, {}, 2));
 if (argv.justPack) {
   spawn('npm', ['pack'], { cwd: lib, stdio: 'inherit' });
 } else {
-  spawn('npm', ['publish'], { cwd: lib, stdio: 'inherit' });
+  spawn('npm', ['publish', '--access=public'], { cwd: lib, stdio: 'inherit' });
 }
