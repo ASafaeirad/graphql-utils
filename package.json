@@ -7,7 +7,7 @@
   "description": "Useful utilities for create graphql server and client",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/frontendmonster/dev-utils.git"
+    "url": "git+https://github.com/frontendmonster/graphql-utils.git"
   },
   "main": "index.js",
   "scripts": {
