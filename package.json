@@ -1,0 +1,47 @@
+{
+  "name": "@frontendmonster/graphql-utils",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "author": "frontendmonster <frontendmonster@gmail.com>",
+  "description": "Useful utilities for node dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frontendmonster/dev-utils.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf lib",
+    "prebuild": "npm run clean",
+    "build": "babel src --out-dir lib",
+    "lint": "eslint src",
+    "publish": "node ./scripts/publish",
+    "pack": "node ./scripts/publish --just-pack"
+  },
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.2.10",
+    "apollo-client": "^2.4.2",
+    "apollo-link": "^1.2.3",
+    "apollo-link-error": "^1.1.1",
+    "apollo-link-http": "^1.5.5",
+    "apollo-link-state": "^0.4.2",
+    "apollo-resolvers": "^1.4.1",
+    "apollo-server": "^2.0.7",
+    "caller": "^1.0.1",
+    "graphql": "^0.13.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@frontendmonster/dev-utils": "^1.2.0",
+    "@frontendmonster/eslint-config": "^1.0.1",
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.5.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "rimraf": "^2.6.2",
+    "yargs": "^12.0.2"
+  }
+}
