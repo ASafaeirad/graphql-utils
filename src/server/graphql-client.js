@@ -1,11 +1,19 @@
 import { graphql } from 'graphql';
 
-export const GraphqlClient = (function (schema, { models, redis }) {
-  const run = async (query, variable = {}, user) => graphql(schema, query, {}, { user, models, redis }, variable);
+export class GraphqlClient {
+  constructor({ schema, models, redis }) {
+    this.schema = schema;
+    this.modesl = models;
+    this.redis = redis;
+  }
 
-  return {
-    run,
-  };
-});
+  run = async (query, variable = {}, user) => graphql(
+    this.schema,
+    query,
+    {},
+    { user, models: this.models, redis: this.redis },
+    variable,
+  );
+}
 
 export default GraphqlClient;
