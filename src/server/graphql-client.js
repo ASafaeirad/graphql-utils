@@ -3,7 +3,7 @@ import { graphql } from 'graphql';
 export class GraphqlClient {
   constructor({ schema, models, redis }) {
     this.schema = schema;
-    this.modesl = models;
+    this.models = models;
     this.redis = redis;
   }
 
