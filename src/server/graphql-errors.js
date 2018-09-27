@@ -17,21 +17,21 @@ export class AlreadyExistedError extends ApolloError {
 }
 
 export class AlreadyAuthenticatedError extends ApolloError {
-  constructor(message, info) {
+  constructor(message = 'AlreadyAuthenticatedError', info) {
     super(message, 'ALREADY_AUTHENTICATED', info);
     Object.defineProperty(this, 'name', { value: 'AlreadyAuthenticatedError' });
   }
 }
 
 export class UnauthorizedError extends ApolloError {
-  constructor(message, info) {
+  constructor(message = 'UnauthorizedError', info) {
     super(message, 'UNAUTHORIZED', info);
     Object.defineProperty(this, 'name', { value: 'UnauthorizedError' });
   }
 }
 
 export class UnknownError extends ApolloError {
-  constructor(message, info) {
+  constructor(message = 'UnknownError', info) {
     super(message, 'UNKNOWN', info);
     Object.defineProperty(this, 'name', { value: 'UnknownError' });
   }
