@@ -14,7 +14,7 @@ const createApolloClient = ({ intialState, storage, endpoint, onLogin, onLogout,
   const retriableFetch = createRetriableFetch({ endpoint, storage, cache: inMemoryCache, onLogin, onLogout, refreshTokenMutation });
 
   const request = async (operation) => {
-    const { token } = Storage;
+    const { token } = storage;
     if (!token) return;
 
     operation.setContext({ headers: { authorization: token } });
