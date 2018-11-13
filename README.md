@@ -27,6 +27,8 @@ const apolloClinet = createApolloClient({
 };
 ```
 
+---
+
 ## Server Module
 
 ### ALC Resolvers
@@ -106,4 +108,41 @@ Assume the following directory structure:
 ```
 .
 └── schema.graphql
+```
+
+### graphql-client
+
+Simple graphql client for testing purpose.
+You can inject mongodb models and redis instance.
+
+#### Usage
+
+1. Create a graphql-client instance with schema, mongoose models and redis client.
+2. Use `instance.run(query)`;
+
+#### GraphqlClient Instace Api
+
+`run:: (query, [variables], [user]) => Promise<ExcutionResultDataDefault>`
+
+arguments:
+
+* `query`: graphql query
+* `variables`: query variables
+* `user`: will pass to query context for authorization purpos
+
+#### Example
+
+```javascript
+import { GraphqlClient } from '@frontendmonster/graphql-utils/server';
+import { schema } from './schema';
+import { models, redis } from './data-layer';
+
+const graphqlClient = new GraphqlClient({ schema, models, redisConnection });
+
+const query = `{
+  hello
+}`;
+
+const result = await graphqlClient.run(query); // result.data.hello > 'world'
+
 ```
