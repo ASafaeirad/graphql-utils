@@ -28,8 +28,7 @@
     "apollo-link-state": "^0.4.2",
     "apollo-resolvers": "^1.4.1",
     "apollo-server": "^2.0.7",
-    "caller": "^1.0.1",
-    "graphql": "^0.13.2"
+    "caller": "^1.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
@@ -46,6 +45,9 @@
     "husky": "^1.0.0-rc.15",
     "rimraf": "^2.6.2",
     "yargs": "^12.0.2"
+  },
+  "peerDependencies": {
+    "graphql": ">=14"
   },
   "husky": {
     "hooks": {
