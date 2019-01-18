@@ -27,7 +27,7 @@ export const isNotAuthenticatedResolver = baseResolver.createResolver(async (_, 
   }
 });
 
-export const shoudAuthenticatedResolver = baseResolver.createResolver(async (_, __, ctx) => {
+export const shouldAuthenticatedResolver = baseResolver.createResolver(async (_, __, ctx) => {
   const user = await ctx.user;
 
   if (!user || !user.id) {
