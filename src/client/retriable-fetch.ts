@@ -1,4 +1,4 @@
-const createRetriableFetch = ({ endpoint, storage, cache, onLogin, onLogout, refreshTokenMutation }) => async (uri, options) => {
+const createRetriableFetch = ({ endpoint, storage, cache, onLogin, onLogout, refreshTokenMutation }: any) => async (uri: string, options: any) => {
   try {
     const initialReq = fetch(uri, options);
     const initialRes = await initialReq;
@@ -10,22 +10,25 @@ const createRetriableFetch = ({ endpoint, storage, cache, onLogin, onLogout, ref
     return initialRes.clone();
   } catch (e) {
     try {
-      if (e.message === 'UnauthorizedError') {
-        const { refreshToken, user } = storage;
-        const { newAccessToken, newRefreshToken } = await getNewToken(endpoint, refreshToken, user, refreshTokenMutation);
-        onLogin(storage, cache, user, newAccessToken, newRefreshToken);
-
-        options.headers.authorization = newAccessToken;
-        return fetch(uri, options);
+      if (e.message !== 'UnauthorizedError') {
+        return null;
       }
+
+      const { refreshToken, user } = storage;
+      const { newAccessToken, newRefreshToken } = await getNewToken(endpoint, refreshToken, user, refreshTokenMutation);
+      onLogin(storage, cache, user, newAccessToken, newRefreshToken);
+
+      options.headers.authorization = newAccessToken;
+      return fetch(uri, options);
     } catch (error) {
       onLogout(storage, cache);
+      return null;
     }
   }
 };
 
 
-async function getNewToken(endpoint, refreshToken, user, refreshTokenMutation) {
+async function getNewToken(endpoint: string, refreshToken: string, user: any, refreshTokenMutation: string) {
   const res = await fetch(endpoint, {
     method: 'POST',
     body: JSON.stringify({

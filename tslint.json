@@ -1,0 +1,7 @@
+{
+  "extends": ["tslint-config-prettier"],
+  "rules": {
+    "object-shorthand-properties-first": false,
+    "semicolon": { "options": "always", "severity": "warn" }
+  }
+}

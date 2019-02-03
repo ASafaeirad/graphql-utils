@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
@@ -8,12 +7,12 @@ import { ApolloLink, Observable } from 'apollo-link';
 import createRetriableFetch from './retriable-fetch';
 
 
-const createApolloClient = ({ intialState, storage, endpoint, onLogin, onLogout, refreshTokenMutation, debug, resolvers }) => {
+const createApolloClient = ({ intialState, storage, endpoint, onLogin, onLogout, refreshTokenMutation, debug, resolvers }: any) => {
   const inMemoryCache = new InMemoryCache();
 
   const retriableFetch = createRetriableFetch({ endpoint, storage, cache: inMemoryCache, onLogin, onLogout, refreshTokenMutation });
 
-  const request = async (operation) => {
+  const request = async (operation: any) => {
     const { token } = storage;
     if (!token) return;
 
@@ -21,10 +20,11 @@ const createApolloClient = ({ intialState, storage, endpoint, onLogin, onLogout,
   };
 
   const requestLink = new ApolloLink((operation, forward) => new Observable((observer) => {
-    let handle;
+    let handle: any;
     Promise.resolve(operation)
       .then(oper => request(oper))
       .then(() => {
+        // @ts-ignore
         handle = forward(operation).subscribe({
           next: observer.next.bind(observer),
           error: observer.error.bind(observer),
@@ -38,7 +38,7 @@ const createApolloClient = ({ intialState, storage, endpoint, onLogin, onLogout,
     };
   }));
 
-  const errorHandler = ({ graphQLErrors, networkError }) => {
+  const errorHandler = ({ graphQLErrors, networkError }: any) => {
     if (graphQLErrors) {
       console.assert(debug, graphQLErrors[0]);
     }
@@ -62,6 +62,7 @@ const createApolloClient = ({ intialState, storage, endpoint, onLogin, onLogout,
         defaults: intialState,
         resolvers,
       }),
+      // @ts-ignore
       new HttpLink({
         uri: endpoint,
         fetch: retriableFetch,

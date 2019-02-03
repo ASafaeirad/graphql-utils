@@ -13,38 +13,30 @@
   "scripts": {
     "clean": "rimraf lib",
     "prebuild": "npm run clean",
-    "build": "babel src --out-dir lib",
-    "prelint": "eslint src --fix",
-    "lint": "eslint src",
-    "lib:publish": "node ./scripts/publish",
-    "lib:pack": "node ./scripts/publish --just-pack"
+    "build": "tsc",
+    "lint": "tslint --project ./",
+    "lib:publish": "builder",
+    "lib:pack": "builder --pack"
   },
   "dependencies": {
-    "apollo-cache-inmemory": "^1.2.10",
-    "apollo-client": "^2.4.2",
-    "apollo-link": "^1.2.3",
-    "apollo-link-error": "^1.1.1",
-    "apollo-link-http": "^1.5.5",
+    "apollo-cache-inmemory": "^1.4.2",
+    "apollo-client": "^2.4.12",
+    "apollo-link": "^1.2.8",
+    "apollo-link-error": "^1.1.7",
+    "apollo-link-http": "^1.5.11",
     "apollo-link-state": "^0.4.2",
-    "apollo-resolvers": "^1.4.1",
-    "apollo-server": "^2.0.7",
-    "caller": "^1.0.1"
+    "apollo-server": "^2.3.3",
+    "graphql": ">=14"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.0",
-    "@babel/core": "^7.1.0",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
-    "@frontendmonster/dev-utils": "^1.2.0",
-    "@frontendmonster/eslint-config": "^1.0.1",
-    "babel-eslint": "^9.0.0",
-    "eslint": "^5.5.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1",
+    "@frontendmonster/builder": "^0.2.0",
+    "@frontendmonster/dev-utils": "^3.0.0",
+    "@types/graphql": "^14.0.5",
     "husky": "^1.0.0-rc.15",
     "rimraf": "^2.6.2",
-    "yargs": "^12.0.2"
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.4"
   },
   "peerDependencies": {
     "graphql": ">=14"

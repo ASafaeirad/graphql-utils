@@ -3,36 +3,29 @@ import { ApolloError } from 'apollo-server';
 export { ForbiddenError, UserInputError } from 'apollo-server';
 
 export class NotFoundError extends ApolloError {
-  constructor(resource, info) {
-    super(`${resource} not found`, 'NOT_FOUND', info);
+  constructor(resource: string, properties?: Record<string, any>) {
+    super(`${resource} not found`, 'NOT_FOUND', properties);
     Object.defineProperty(this, 'name', { value: 'NotFoundError' });
   }
 }
 
 export class AlreadyExistedError extends ApolloError {
-  constructor(resource, info) {
-    super(`${resource} already existed`, 'ALREADY_EXISTED', info);
+  constructor(resource: string, properties?: Record<string, any>) {
+    super(`${resource} already existed`, 'ALREADY_EXISTED', properties);
     Object.defineProperty(this, 'name', { value: 'AlreadyExistedError' });
   }
 }
 
 export class AlreadyAuthenticatedError extends ApolloError {
-  constructor(message = 'AlreadyAuthenticatedError', info) {
-    super(message, 'ALREADY_AUTHENTICATED', info);
+  constructor(message = 'AlreadyAuthenticatedError', properties?: Record<string, any>) {
+    super(message, 'ALREADY_AUTHENTICATED', properties);
     Object.defineProperty(this, 'name', { value: 'AlreadyAuthenticatedError' });
   }
 }
 
-export class UnauthorizedError extends ApolloError {
-  constructor(message = 'UnauthorizedError', info) {
-    super(message, 'UNAUTHORIZED', info);
-    Object.defineProperty(this, 'name', { value: 'UnauthorizedError' });
-  }
-}
-
 export class UnknownError extends ApolloError {
-  constructor(message = 'UnknownError', info) {
-    super(message, 'UNKNOWN', info);
+  constructor(message = 'UnknownError', properties?: Record<string, any>) {
+    super(message, 'UNKNOWN', properties);
     Object.defineProperty(this, 'name', { value: 'UnknownError' });
   }
 }
