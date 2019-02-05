@@ -1,6 +1,6 @@
 import { ApolloError } from 'apollo-server';
 
-export { ForbiddenError, UserInputError } from 'apollo-server';
+export { ForbiddenError, UserInputError, AuthenticationError, ValidationError } from 'apollo-server';
 
 export class NotFoundError extends ApolloError {
   constructor(resource: string, properties?: Record<string, any>) {
