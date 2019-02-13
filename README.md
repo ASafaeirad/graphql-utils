@@ -31,49 +31,19 @@ const apolloClinet = createApolloClient({
 
 ## Server Module
 
-### ALC Resolvers
-
-ALC-Resolvers Provides a pattern for creating access controll based resolvers.
-
-| api                         | description |
-| ---                         | ---         |
-|`isAuthenticatedResolver`    | is an [apollo-resover](https://github.com/thebigredgeek/apollo-resolvers) that throw error when `context.user` promise get rejected or resolving object w/o id field |
-|`isNotAuthenticatedResolver` | is an [apollo-resover](https://github.com/thebigredgeek/apollo-resolvers) that throw error when `context.user` promise resolving with id field |
-|`shoudAuthenticatedResolver` | is an [apollo-resover](https://github.com/thebigredgeek/apollo-resolvers) that check `context.user` promise add it to `context.user` if user exist |
-
-### usage
-
-```javascript
-import { isAuthenticatedResolver } from '@frontendmonster/graphql-utils/server';
-
-const context = (req) => {
-  const user = req.user
-    ? User.findById(req.user.id)
-    : Promise.resolve(null);
-}
-
-const profile = isAuthenticatedResolver.createResolver(
-  (root, input, context) => // resolver profile
-  (root, input, context, error) => // handle errors,
-);
-
-
-const resolvers = {
-  profile
-}
-```
-
 ### graphql-errors
 
 Extending [apollo-server-errors](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-errors)
 
-* ForbiddenError
-* UserInputError
 * NotFoundError
 * AlreadyExistedError
+* ForbiddenError
 * AlreadyAuthenticatedError
-* UnauthorizedError
 * UnknownError
+* UserInputError
+* ForbidenError
+* AuthenticationError
+* ValidationError
 
 #### Usage
 
@@ -91,25 +61,6 @@ const resolvers = {
 }
 ```
 
-### graphql-import
-
-Import graphql definitions from _.graphql_ files.
-
-#### Usage
-
-```javascript
-import { importSchema } from '@frontendmonster/graphl-utils/server';
-
-const typeDefs = importSchema('./schema.graphql');
-```
-
-Assume the following directory structure:
-
-```
-.
-└── schema.graphql
-```
-
 ### graphql-client
 
 Simple graphql client for testing purpose.
@@ -122,22 +73,21 @@ You can inject mongodb models and redis instance.
 
 #### GraphqlClient Instace Api
 
-`run:: (query, [variables], [user]) => Promise<ExcutionResultDataDefault>`
+`run<T>:: (query, [user], [variables]) => Promise<T>`
 
 arguments:
 
 * `query`: graphql query
-* `variables`: query variables
 * `user`: will pass to query context for authorization purpos
+* `variables`: query variables
 
 #### Example
 
 ```javascript
 import { GraphqlClient } from '@frontendmonster/graphql-utils/server';
-import { schema } from './schema';
-import { models, redis } from './data-layer';
+import { schema, context } from './schema';
 
-const graphqlClient = new GraphqlClient({ schema, models, redisConnection });
+const graphqlClient = new GraphqlClient({ schema, context });
 
 const query = `{
   hello

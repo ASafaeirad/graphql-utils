@@ -1,5 +1,6 @@
 /// <reference types="graphql" />
 import { graphql, GraphQLSchema } from 'graphql';
+import { ExecutionResultDataDefault } from 'graphql/execution/execute';
 
 interface Option {
   schema: GraphQLSchema;
@@ -9,7 +10,7 @@ interface Option {
 export class GraphqlClient {
   constructor(private option: Option) {}
 
-  async run<T>(query: string, user: any = {}, variable: any = {}) {
+  async run<T=ExecutionResultDataDefault>(query: string, user: any = {}, variable: any = {}) {
     return graphql<T>(
       this.option.schema,
       query,
