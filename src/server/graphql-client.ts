@@ -10,12 +10,12 @@ interface Option {
 export class GraphqlClient {
   constructor(private option: Option) {}
 
-  async run<T=ExecutionResultDataDefault>(query: string, user: any = {}, variable: any = {}) {
+  async run<T=ExecutionResultDataDefault>(query: string, user?: any, variable?: any) {
     return graphql<T>(
       this.option.schema,
       query,
       {},
-      { user, ...this.option.context },
+      { ...{ user }, ...this.option.context },
       variable,
     );
   }
