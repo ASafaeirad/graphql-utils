@@ -15,7 +15,7 @@ export class GraphqlClient {
       this.option.schema,
       query,
       {},
-      { ...{ user }, ...this.option.context },
+      { ...{ resolveUser: Promise.resolve(user) }, ...this.option.context },
       variable,
     );
   }
