@@ -1,4 +1,3 @@
-/// <reference types="graphql" />
 import { graphql, GraphQLSchema } from 'graphql';
 import { ExecutionResultDataDefault } from 'graphql/execution/execute';
 

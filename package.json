@@ -18,19 +18,8 @@
     "lib:publish": "builder",
     "lib:pack": "builder --pack"
   },
-  "dependencies": {
-    "apollo-cache-inmemory": "^1.4.2",
-    "apollo-client": "^2.4.12",
-    "apollo-link": "^1.2.8",
-    "apollo-link-error": "^1.1.7",
-    "apollo-link-http": "^1.5.11",
-    "apollo-link-state": "^0.4.2",
-    "apollo-server": "^2.3.3",
-    "graphql": ">=14"
-  },
   "devDependencies": {
     "@frontendmonster/builder": "^0.2.0",
-    "@frontendmonster/dev-utils": "^3.0.0",
     "@types/graphql": "^14.0.5",
     "husky": "^1.0.0-rc.15",
     "rimraf": "^2.6.2",
@@ -39,7 +28,8 @@
     "typescript": "^3.2.4"
   },
   "peerDependencies": {
-    "graphql": ">=14"
+    "apollo-server": "*",
+    "graphql": "*"
   },
   "husky": {
     "hooks": {
