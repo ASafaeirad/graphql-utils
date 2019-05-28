@@ -18,6 +18,10 @@
     "lib:publish": "builder",
     "lib:pack": "builder --pack"
   },
+  "dependencies": {
+    "apollo-server": "*",
+    "graphql": "*"
+  },
   "devDependencies": {
     "@frontendmonster/builder": "^0.2.0",
     "@types/graphql": "^14.0.5",
